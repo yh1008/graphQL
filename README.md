@@ -2,5 +2,5 @@
 User Properties   
 
 
-email: unique id
+email: unique id  
 username: full name
