@@ -3,4 +3,4 @@
 Graphdb that provides strategic supports to Serverless Web app
 
 
-![alt tag](master/setup/graph.png)
+![Alt text](https://github.com/yh1008/neo4j/blob/master/setup/graph.png)
