@@ -1,7 +1,9 @@
 #neo4j
 
 Graphdb that provides strategic supports to Serverless Web app  
+
 Include two recommendations features:  
+
 1. episode recommendation  
 2. friend recommendation   
 
