@@ -1,0 +1,22 @@
+//recomend episode based on user ratings
+MATCH (me:user {email:'huaye1994@gmail.com'})-[myrating:RATE]->(myratedepisode:content)
+MATCH (other:user)-[theirrating:RATE]->(myratedepisode)
+WHERE me <> other
+AND abs(myrating.score - theirrating.score) < 2
+WITH other, myratedepisode
+MATCH (other)-[otherrating:RATE]->(episode:content)
+WHERE myratedepisode <> episode
+WITH avg(otherrating.score) AS avgRating, episode
+RETURN episode
+ORDER BY avgRating desc
+LIMIT 3
+
+//recommend friends based on mutural friends & at least one LIKE on the same episode
+//ignore relationship direction
+MATCH  (me:user)-[:FRIEND]-(myFriend:user)-[:FRIEND]-(friendOfFriend:user) 
+MATCH (me:user) -[:LIKE] -> (episode:content)
+MATCH (friendOfFriend) - [:LIKE] -> (episode)
+WITH friendOfFriend, count(episode) as nOfCommonLikes, collect(episode) as episodes, me
+WHERE NOT (me)-[:FRIEND]-(friendOfFriend:Person) AND me.email = 'huaye1994@gmail.com' AND nOfCommonLikes >= 1
+RETURN count(friendOfFriend) as friendsInCommon, friendOfFriend.name as suggestedFriend 
+ORDER BY friendsInCommon DESC;
