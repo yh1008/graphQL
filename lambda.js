@@ -18,7 +18,7 @@ function recommendFriend(email, method, callback) {
     };
     /*calling neo4j */
     var request = require('request');
-    var httpUrlForTransaction = "http://contentcatalog:mL1CSF2PKYTtPkGMdRnv@hobby-hhimaappojekgbkebdhlnhol.dbs.graphenedb.com:24789/db/data/transaction/commit";
+    var httpUrlForTransaction = "my url"
     function runCypherQuery(query, params, callback) {
         request.post({
             uri: httpUrlForTransaction,
